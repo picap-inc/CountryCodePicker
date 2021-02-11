@@ -57,25 +57,15 @@ class _SelectionDialogState extends State<SelectionDialog> {
   List<CountryCode> filteredElements;
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
+  Widget build(BuildContext context) => Card(child: Container(
           clipBehavior: Clip.hardEdge,
-          width: widget.size?.width ?? MediaQuery.of(context).size.width,
+          width: widget.size?.width ?? MediaQuery.of(context).size.width * 0.9,
           height:
-              widget.size?.height ?? MediaQuery.of(context).size.height * 0.85,
+              widget.size?.height ?? MediaQuery.of(context).size.height * 0.8,
           decoration: widget.boxDecoration ??
               BoxDecoration(
                 color: widget.backgroundColor ?? Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                boxShadow: [
-                  BoxShadow(
-                    color: widget.barrierColor ?? Colors.grey.withOpacity(1),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+                borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -83,7 +73,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             children: [
               IconButton(
                 padding: const EdgeInsets.all(0),
-                iconSize: 20,
+                iconSize: 25,
                 icon: widget.closeIcon,
                 onPressed: () => Navigator.pop(context),
               ),
@@ -136,14 +126,14 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   Widget _buildOption(CountryCode e) {
     return Container(
-      width: 400,
+      width: double.maxFinite,
       child: Flex(
         direction: Axis.horizontal,
         children: <Widget>[
           if (widget.showFlag)
             Flexible(
               child: Padding(
-                padding: const EdgeInsets.only(right: 16.0),
+                padding: const EdgeInsets.only(right: 12.0),
                 child: Image.asset(
                   e.flagUri,
                   package: 'country_code_picker',
