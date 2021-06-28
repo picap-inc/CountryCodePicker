@@ -1,26 +1,28 @@
 import 'package:country_code_picker/country_code.dart';
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 
 /// selection dialog used for selection of the country code
 class SelectionDialog extends StatefulWidget {
   final List<CountryCode> elements;
-  final bool showCountryOnly;
+  final bool? showCountryOnly;
   final InputDecoration searchDecoration;
-  final TextStyle searchStyle;
-  final TextStyle textStyle;
-  final BoxDecoration boxDecoration;
-  final WidgetBuilder emptySearchBuilder;
-  final bool showFlag;
+  final TextStyle? searchStyle;
+  final TextStyle? textStyle;
+  final BoxDecoration? boxDecoration;
+  final WidgetBuilder? emptySearchBuilder;
+  final bool? showFlag;
   final double flagWidth;
-  final Size size;
+  final Decoration? flagDecoration;
+  final Size? size;
   final bool hideSearch;
-  final Icon closeIcon;
+  final Icon? closeIcon;
 
   /// Background color of SelectionDialog
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Boxshaow color of SelectionDialog that matches CountryCodePicker barrier color
-  final Color barrierColor;
+  final Color? barrierColor;
 
   /// elements passed as favorite
   final List<CountryCode> favoriteElements;
@@ -28,7 +30,7 @@ class SelectionDialog extends StatefulWidget {
   SelectionDialog(
     this.elements,
     this.favoriteElements, {
-    Key key,
+    Key? key,
     this.showCountryOnly,
     this.emptySearchBuilder,
     InputDecoration searchDecoration = const InputDecoration(),
@@ -36,14 +38,14 @@ class SelectionDialog extends StatefulWidget {
     this.textStyle,
     this.boxDecoration,
     this.showFlag,
+    this.flagDecoration,
     this.flagWidth = 32,
     this.size,
     this.backgroundColor,
     this.barrierColor,
     this.hideSearch = false,
     this.closeIcon,
-  })  : assert(searchDecoration != null, 'searchDecoration must not be null!'),
-        this.searchDecoration = searchDecoration.prefixIcon == null
+  })  : this.searchDecoration = searchDecoration.prefixIcon == null
             ? searchDecoration.copyWith(prefixIcon: Icon(Icons.search))
             : searchDecoration,
         super(key: key);
@@ -54,10 +56,12 @@ class SelectionDialog extends StatefulWidget {
 
 class _SelectionDialogState extends State<SelectionDialog> {
   /// this is useful for filtering purpose
-  List<CountryCode> filteredElements;
+  late List<CountryCode> filteredElements;
 
   @override
   Widget build(BuildContext context) => Card(child: Container(
+        padding: const EdgeInsets.all(0.0),
+        child: Container(
           clipBehavior: Clip.hardEdge,
           width: widget.size?.width ?? MediaQuery.of(context).size.width * 0.9,
           height:
@@ -65,7 +69,15 @@ class _SelectionDialogState extends State<SelectionDialog> {
           decoration: widget.boxDecoration ??
               BoxDecoration(
                 color: widget.backgroundColor ?? Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.barrierColor ?? Colors.grey.withOpacity(1),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -130,12 +142,15 @@ class _SelectionDialogState extends State<SelectionDialog> {
       child: Flex(
         direction: Axis.horizontal,
         children: <Widget>[
-          if (widget.showFlag)
+          if (widget.showFlag!)
             Flexible(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
+              child: Container(
+                margin: const EdgeInsets.only(right: 12.0),
+                decoration: widget.flagDecoration,
+                clipBehavior:
+                    widget.flagDecoration == null ? Clip.none : Clip.hardEdge,
                 child: Image.asset(
-                  e.flagUri,
+                  e.flagUri!,
                   package: 'country_code_picker',
                   width: widget.flagWidth,
                 ),
@@ -144,7 +159,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
           Expanded(
             flex: 4,
             child: Text(
-              widget.showCountryOnly
+              widget.showCountryOnly!
                   ? e.toCountryStringOnly()
                   : e.toLongString(),
               overflow: TextOverflow.fade,
@@ -158,11 +173,12 @@ class _SelectionDialogState extends State<SelectionDialog> {
 
   Widget _buildEmptySearchWidget(BuildContext context) {
     if (widget.emptySearchBuilder != null) {
-      return widget.emptySearchBuilder(context);
+      return widget.emptySearchBuilder!(context);
     }
 
     return Center(
-      child: Text('No country found'),
+      child: Text(CountryLocalizations.of(context)?.translate('no_country') ??
+          'No country found'),
     );
   }
 
@@ -177,9 +193,9 @@ class _SelectionDialogState extends State<SelectionDialog> {
     setState(() {
       filteredElements = widget.elements
           .where((e) =>
-              e.code.contains(s) ||
-              e.dialCode.contains(s) ||
-              e.name.toUpperCase().contains(s))
+              e.code!.contains(s) ||
+              e.dialCode!.contains(s) ||
+              e.name!.toUpperCase().contains(s))
           .toList();
     });
   }

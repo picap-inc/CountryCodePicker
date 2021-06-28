@@ -4,7 +4,9 @@
 
 A flutter package for showing a country code selector.
 
-It supports i18n.
+It supports i18n for 70 languages.
+
+Check the example on web! https://imtoori.dev/CountryCodePicker/#/
 
 <img src="https://raw.githubusercontent.com/Salvatore-Giordano/CountryCodePicker/master/screenshots/screen1.png" width="240"/>
 <img src="https://raw.githubusercontent.com/Salvatore-Giordano/CountryCodePicker/master/screenshots/screen2.png" width="240"/>
@@ -53,10 +55,76 @@ Just add the `CountryLocalizations.delegate` in the list of your app delegates
 ```dart
  return new MaterialApp(
       supportedLocales: [
-        Locale('en'),
-        Locale('it'),
-        Locale('fr'),
-        Locale('es'),
+         Locale("af"),
+        Locale("am"),
+        Locale("ar"),
+        Locale("az"),
+        Locale("be"),
+        Locale("bg"),
+        Locale("bn"),
+        Locale("bs"),
+        Locale("ca"),
+        Locale("cs"),
+        Locale("da"),
+        Locale("de"),
+        Locale("el"),
+        Locale("en"),
+        Locale("es"),
+        Locale("et"),
+        Locale("fa"),
+        Locale("fi"),
+        Locale("fr"),
+        Locale("gl"),
+        Locale("ha"),
+        Locale("he"),
+        Locale("hi"),
+        Locale("hr"),
+        Locale("hu"),
+        Locale("hy"),
+        Locale("id"),
+        Locale("is"),
+        Locale("it"),
+        Locale("ja"),
+        Locale("ka"),
+        Locale("kk"),
+        Locale("km"),
+        Locale("ko"),
+        Locale("ku"),
+        Locale("ky"),
+        Locale("lt"),
+        Locale("lv"),
+        Locale("mk"),
+        Locale("ml"),
+        Locale("mn"),
+        Locale("ms"),
+        Locale("nb"),
+        Locale("nl"),
+        Locale("nn"),
+        Locale("no"),
+        Locale("pl"),
+        Locale("ps"),
+        Locale("pt"),
+        Locale("ro"),
+        Locale("ru"),
+        Locale("sd"),
+        Locale("sk"),
+        Locale("sl"),
+        Locale("so"),
+        Locale("sq"),
+        Locale("sr"),
+        Locale("sv"),
+        Locale("ta"),
+        Locale("tg"),
+        Locale("th"),
+        Locale("tk"),
+        Locale("tr"),
+        Locale("tt"),
+        Locale("uk"),
+        Locale("ug"),
+        Locale("ur"),
+        Locale("uz"),
+        Locale("vi"),
+        Locale("zh")
       ],
       localizationsDelegates: [
         CountryLocalizations.delegate,
@@ -92,6 +160,7 @@ Here is a list of properties available to customize your widget:
 |showFlagMain| bool | shows the flag only when closed |
 |showFlagDialog| bool | shows the flag only in dialog |
 |flagWidth| double | the width of the flags |
+|flagDecoration| Decoration | used for styling the flags |
 |comparator| Comparator<CountryCode> | use this to sort the countries in the selection dialog |
 |hideSearch| bool | if true the search feature will be disabled |
 

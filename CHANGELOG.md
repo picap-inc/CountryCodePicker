@@ -1,3 +1,21 @@
+## 2.0.2
+
+- added localization for no_country text in italian and english (please open a pr with other languages if you know them 🙏)
+- added possibility to inject a custom list of countries using `CountryCodePicker.countryList`
+- minor fixes
+
+## 2.0.1
+
+- Use `universal_platform` package
+
+## 2.0.0
+
+- support 70 languages
+- use modal_bottom_sheet 2.0.0
+- nullable integration
+- switch to dialog on desktop app support
+- added flagDecoration
+
 ## 1.7.0
 
 - Update modal_bottom_sheet to 1.0.0+1
