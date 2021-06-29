@@ -59,7 +59,8 @@ class _SelectionDialogState extends State<SelectionDialog> {
   late List<CountryCode> filteredElements;
 
   @override
-  Widget build(BuildContext context) => Card(child: Container(
+  Widget build(BuildContext context) => Card(
+          child: Container(
         padding: const EdgeInsets.all(0.0),
         child: Container(
           clipBehavior: Clip.hardEdge,
@@ -134,7 +135,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             ],
           ),
         ),
-      );
+      ));
 
   Widget _buildOption(CountryCode e) {
     return Container(
