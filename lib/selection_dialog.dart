@@ -87,7 +87,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
               IconButton(
                 padding: const EdgeInsets.all(0),
                 iconSize: 25,
-                icon: widget.closeIcon,
+                icon: widget.closeIcon!,
                 onPressed: () => Navigator.pop(context),
               ),
               if (!widget.hideSearch)
