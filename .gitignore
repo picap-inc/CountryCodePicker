@@ -7,3 +7,14 @@ packages
 .vscode
 *.lock
 .dart_tool/
+
+# FVM Version Cache
+.fvm/
+/.fvmrc
+/ios/Flutter/flutter_export_environment.sh
+/example/ios/Flutter/ephemeral/flutter_lldb_helper.py
+/ios/Flutter/ephemeral/flutter_lldb_helper.py
+/example/ios/Flutter/ephemeral/flutter_lldbinit
+/ios/Flutter/ephemeral/flutter_lldbinit
+/ios/Flutter/Generated.xcconfig
+/android/local.properties

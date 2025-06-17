@@ -22,12 +22,7 @@ class CountryCode {
   /// the dial code (+39,+93..)
   final String? dialCode;
 
-  CountryCode({
-    this.name,
-    this.flagUri,
-    this.code,
-    this.dialCode,
-  });
+  CountryCode({this.name, this.flagUri, this.code, this.dialCode});
 
   @Deprecated('Use `fromCountryCode` instead.')
   factory CountryCode.fromCode(String isoCode) {
@@ -38,14 +33,30 @@ class CountryCode {
     final Map<String, String>? jsonCode = codes.firstWhereOrNull(
       (code) => code['code'] == countryCode,
     );
-    return CountryCode.fromJson(jsonCode!);
+    if (jsonCode != null) {
+      return CountryCode.fromJson(jsonCode);
+    } else {
+      return CountryCode.fromJson({
+        "name": "Colombia",
+        "code": "CO",
+        "dial_code": "+57",
+      });
+    }
   }
 
   factory CountryCode.fromDialCode(String dialCode) {
     final Map<String, String>? jsonCode = codes.firstWhereOrNull(
       (code) => code['dial_code'] == dialCode,
     );
-    return CountryCode.fromJson(jsonCode!);
+    if (jsonCode != null) {
+      return CountryCode.fromJson(jsonCode);
+    } else {
+      return CountryCode.fromJson({
+        "name": "Colombia",
+        "code": "CO",
+        "dial_code": "+57",
+      });
+    }
   }
 
   CountryCode localize(BuildContext context) {

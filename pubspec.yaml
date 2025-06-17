@@ -1,18 +1,19 @@
 name: country_code_picker
 description: A flutter package for showing a country code selector. In addition it gives the possibility to select a list of favorites countries, as well as to search using a simple searchbox  
-version: 2.0.2
+version: 2.0.3
 homepage: https://github.com/imtoori/CountryCodePicker
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ^3.8.0
+  flutter: 3.32.0
 
 dependencies:
   flutter:
     sdk: flutter
 
   modal_bottom_sheet: ^3.0.0-pre
-  collection: ^1.17.1
-  universal_platform: ^1.0.0+1
+  collection: ^1.19.1
+  universal_platform: ^1.1.0
 
 flutter:
   assets:

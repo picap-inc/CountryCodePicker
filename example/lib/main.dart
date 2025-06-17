@@ -106,10 +106,10 @@ class _MyAppState extends State<MyApp> {
                 showCountryOnly: false,
                 hideSearch: true,
                 alignLeft: true,
-                comparator: (a, b) => b.name.compareTo(a.name),
+                comparator: (a, b) => b.name!.compareTo(a.name!),
                 //Get the country information relevant to the initial selection
                 onInit: (code) =>
-                    print("on init ${code.name} ${code.dialCode} ${code.name}"),
+                    print("on init ${code?.name} ${code?.dialCode} ${code?.name}"),
               ),
               CountryCodePicker(
                 onChanged: print,
